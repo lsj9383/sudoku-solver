@@ -9,7 +9,7 @@ public interface SudokuSolver {
 	void SetLayout(File file) throws Exception;
 	void SetLayout(String strJson) throws Exception;
 	int[][] GetLayout();
-	
+	String GetFormatLayout();
 	
 	void Solve();
 	void Solve(int[][] layout);

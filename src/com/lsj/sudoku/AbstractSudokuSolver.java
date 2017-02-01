@@ -14,6 +14,24 @@ public abstract class AbstractSudokuSolver implements SudokuSolver {
 	public int[][] GetLayout(){
 		return layout;
 	}
+	
+	@Override 
+	public String GetFormatLayout(){
+		StringBuilder strbld = new StringBuilder();
+		for(int i=0; i<9; i++){
+			for(int j=0; j<9; j++){
+				strbld.append(layout[i][j]+" ");
+				if((j+1)%3 == 0){
+					strbld.append("| ");
+				}
+			}
+			strbld.append("\n");
+			if((i+1)%3 == 0){
+				strbld.append("-----------------------\n");
+			}
+		}
+		return strbld.toString();
+	}
 
 	@Override
 	public void SetLayout(int[][] layout) {
