@@ -24,7 +24,7 @@
 ]
 ```
 代表着如下的数独题目:
-![](https://github.com/lsj9383/sudoku-solver/blob/master/icon/layout.png)
+<br>![](https://github.com/lsj9383/sudoku-solver/blob/master/icon/layout.png)<br>
 很明显，在json布局描述中，用0表示该位置为空。
 
 
