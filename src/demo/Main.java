@@ -16,8 +16,13 @@ public class Main {
 	
 	static void TestDFSSudokuSolver() throws Exception{
 		SudokuSolver solver = new DFSSudokuSolver();
-		solver.SetLayout(new File("layout.json"));			
+		solver.SetLayout(new File("layout.json"));
+		
 		solver.Solve();										
+		System.out.println(solver.GetFormatLayout());	
+		System.out.println("*******************************************************");
+		
+		solver.Solve();
 		System.out.println(solver.GetFormatLayout());	
 	}
 	

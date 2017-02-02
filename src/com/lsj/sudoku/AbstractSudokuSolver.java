@@ -57,13 +57,15 @@ public abstract class AbstractSudokuSolver implements SudokuSolver {
 	@Override
 	public void SetLayout(String strLayout) {
 		JSONArray array = JSONArray.fromObject(strLayout);
+		int[][] playout = new int[9][9];
 		for(int i=0; i<9; i++){
 			JSONArray row = array.getJSONArray(i);
 			for(int j=0; j<9; j++){
 				int value = row.getInt(j);
-				layout[i][j] = value;
+				playout[i][j] = value;
 			}
 		}
+		SetLayout(playout);
 	}
 	
 	@Override

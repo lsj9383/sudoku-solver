@@ -5,19 +5,32 @@ import java.util.List;
 import java.util.Stack;
 
 public class DFSSudokuSolver extends AbstractSudokuSolver {
+	private Stack<Integer[]> stack = new Stack<>();
+	private List<Integer> indexMap = new ArrayList<>();
 	
 	@Override
-	public void Solve() {
-		Stack<Integer[]> stack = new Stack<>();
-		List<Integer> indexMap = new ArrayList<>();
+	public void SetLayout(int[][] layout) {
+		super.SetLayout(layout);
+		stack.clear();
+		indexMap.clear();
 		for(int index=-1; index!=81; ){
 			index=NextPointIndex(index);
 			indexMap.add(index);
 		}
-		
-		
-		for(int number=1; number<=9; number++){
-			stack.push(new Integer[]{0, number});	
+	}
+	
+	@Override
+	public void Solve() {
+		if(stack.isEmpty()){
+			for(int number=1; number<=9; number++){
+				stack.push(new Integer[]{0, number});	
+			}
+		}else{
+			Integer[] info = stack.pop();
+			while(indexMap.get(info[0]) == 81){
+				info = stack.pop();
+			}
+			stack.push(info);
 		}
 	
 		while(!stack.isEmpty()){
