@@ -102,4 +102,13 @@ public abstract class AbstractSudokuSolver implements SudokuSolver {
 		
 		return true;
 	}
+	
+	protected int NextPointIndex(int currentIndex){
+		for(int index = currentIndex+1; index<81; index++){
+			if(layout[index/9][index%9] == 0){
+				return index;
+			}
+		}
+		return 81;
+	}
 }
