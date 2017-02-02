@@ -30,6 +30,7 @@ public class DFSSudokuSolver extends AbstractSudokuSolver {
 			int row = currentIndex/9;
 			int col = currentIndex%9;
 			CleanFrom(indexMap, info[0]);
+			
 			if(CheckPoint(currentIndex, info[1])){
 				layout[row][col] = info[1];
 				for(int number=1; number<=9; number++){

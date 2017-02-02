@@ -9,7 +9,6 @@ public class SimpleSudokuSolver extends AbstractSudokuSolver {
 	}
 	
 	private void rec(int index){
-		System.out.println(index);
 		if(index==81){
 			finish = true;
 			return;

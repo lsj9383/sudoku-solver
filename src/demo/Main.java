@@ -19,7 +19,6 @@ public class Main {
 		solver.SetLayout(new File("layout.json"));			
 		solver.Solve();										
 		System.out.println(solver.GetFormatLayout());	
-		System.out.println(solver.CheckLayout());
 	}
 	
 	public static void main(String[] args) throws Exception {
