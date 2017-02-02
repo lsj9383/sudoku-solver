@@ -51,3 +51,10 @@ public static void main(String[] args) throws Exception {
 }
 
 ```
+
+##¶þ¡¢*Çó½âÆ÷*
+###1.*SimpleSudokuSolver*
+
+###2.*DFSSudokuSolver*
+
+###3.*BFSSudokuSolver*
