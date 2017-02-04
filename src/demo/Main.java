@@ -25,23 +25,19 @@ public class Main {
 	static void TestDFSItera() throws Exception{		
 		SudokuSolver solver = new DFSSudokuSolver();
 		solver.SetLayout(new File("layout.json"));
+		boolean status = true;
 		
-		solver.Solve();										
-		System.out.println(solver.GetFormatLayout());	
-		System.out.println("*******************************************************");
-		
-		solver.Solve();
-		System.out.println(solver.GetFormatLayout());
-		System.out.println("*******************************************************");
-		
-		solver.Solve();
-		System.out.println(solver.GetFormatLayout());
-		System.out.println("*******************************************************");
+		for(int i=0; i<10; i++){
+			solver.Solve();
+			status = solver.CheckLayout();
+			System.out.println(i+": "+status);
+			System.out.println(solver.GetFormatLayout());
+		}
 	}
 	
 	public static void main(String[] args) throws Exception {
 //		TestSimpleSudokuSolver();	//递归式dfs求解
 //		TestDFSSudokuSolver();		//迭代式dfs求解
-		TestDFSItera();				//迭代器求解
+		TestDFSItera();				//迭代式dfs的迭代求解
 	}
 }

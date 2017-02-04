@@ -6,16 +6,17 @@ import java.util.Stack;
 
 public class DFSSudokuSolver extends AbstractSudokuSolver {
 	private Stack<Integer[]> stack = new Stack<>();
-	private List<Integer> indexMap = new ArrayList<>();
+	private List<Integer> egIndex = new ArrayList<>();
 	
 	@Override
 	public void SetLayout(int[][] layout) {
 		super.SetLayout(layout);
 		stack.clear();
-		indexMap.clear();
-		for(int index=-1; index!=81; ){
-			index=NextPointIndex(index);
-			indexMap.add(index);
+		egIndex.clear();
+		for(int index=0; index<81; index++){
+			if(layout[index/9][index%9] == 0){
+				egIndex.add(index);	
+			}
 		}
 	}
 	
@@ -27,7 +28,7 @@ public class DFSSudokuSolver extends AbstractSudokuSolver {
 			}
 		}else{
 			Integer[] info = stack.pop();
-			while(indexMap.get(info[0]) == 81){
+			while(info[0] >= egIndex.size()){
 				info = stack.pop();
 			}
 			stack.push(info);
@@ -35,14 +36,14 @@ public class DFSSudokuSolver extends AbstractSudokuSolver {
 	
 		while(!stack.isEmpty()){
 			Integer[] info = stack.pop();
-			int currentIndex = indexMap.get(info[0]);
-			if(currentIndex == 81){
+			if(info[0] >= egIndex.size()){
 				break;
 			}
+			int currentIndex = egIndex.get(info[0]);
 			
 			int row = currentIndex/9;
 			int col = currentIndex%9;
-			CleanFrom(indexMap, info[0]);
+			CleanFrom(egIndex, info[0]);
 			
 			if(CheckPoint(currentIndex, info[1])){
 				layout[row][col] = info[1];
@@ -54,8 +55,8 @@ public class DFSSudokuSolver extends AbstractSudokuSolver {
 	}
 	
 	private void CleanFrom(List<Integer> indexMap, int cnt){
-		for(int index = indexMap.get(cnt); index!=81; index=indexMap.get(++cnt)){
-			if(layout[index/9][index%9] != 0){
+		for(int index : indexMap){
+			if(index >= indexMap.get(cnt) && layout[index/9][index%9] != 0){
 				layout[index/9][index%9] = 0;
 			}
 		}

@@ -53,8 +53,27 @@ public static void main(String[] args) throws Exception {
 ```
 
 ##二、*求解器*
+本项目提供了不同的求解器，不同的求解器有各自的特点。所有的求解器都实现了SudokuSolver接口:
+```java
+public interface SudokuSolver {
+	void SetLayout(int[][] layout);
+	void SetLayout(File file) throws Exception;
+	void SetLayout(String strJson) throws Exception;
+	
+	int[][] GetLayout();
+	String GetFormatLayout();
+	
+	void Solve();
+	boolean CheckLayout();
+	
+}
+```
+
 ###1.*SimpleSudokuSolver*
+这是最简单的求解器，不具备遍历数独多种可能答案的能力，仅仅具备将数独初始布局求出其一个结果布局的能力。
 
 ###2.*DFSSudokuSolver*
+由于数独的结果在某些情况下并不唯一，该求解器可以遍历数独的所有结果布局。一次Solve()方法的调用，就是求解下一个结果布局。
 
 ###3.*BFSSudokuSolver*
+该求解器也可以遍历数独的所有结果布局。和上一个求解器不同的是，这个求解器的一次Solve()就已经将所有的布局结果都计算出来了，后面的Solve()方法的调用都不会有实际的求解，而是单纯的将结果进行切换。对于结果非常多的数独布局，不建议采用该方案，因为该求解器的首次求解较慢，并且较耗内存。

@@ -130,10 +130,6 @@ public abstract class AbstractSudokuSolver implements SudokuSolver {
 		int row = index/9;
 		int col = index%9;
 		
-		if(number <= 0 || number >= 10 || index < 0 || index > 81){
-			return false;
-		}
-		
 		//1).检查行列是否冲突
 		for(int i=0; i<9; i++){
 			if(layout[row][i] == number || layout[i][col] == number){		//冲突
@@ -153,14 +149,5 @@ public abstract class AbstractSudokuSolver implements SudokuSolver {
 		}
 		
 		return true;
-	}
-	
-	protected int NextPointIndex(int currentIndex){
-		for(int index = currentIndex+1; index<81; index++){
-			if(layout[index/9][index%9] == 0){
-				return index;
-			}
-		}
-		return 81;
 	}
 }
